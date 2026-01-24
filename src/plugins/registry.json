@@ -1,0 +1,39 @@
+{
+  "ingestors": {
+    "baileys": {
+      "name": "Baileys",
+      "description": "WhatsApp WebSocket client (example plugin)",
+      "module": "../../plugins/baileys/index.js",
+      "dependencies": [
+        "@whiskeysockets/baileys",
+        "@hapi/boom",
+        "qrcode-terminal",
+        "@types/qrcode-terminal"
+      ],
+      "optional": true,
+      "exportName": "BaileysIngestor"
+    }
+  },
+  "sync": {
+    "local": {
+      "name": "Local Sync",
+      "description": "No cloud sync (local-only storage)",
+      "module": "../../plugins/sync/local/index.js",
+      "dependencies": [],
+      "optional": false,
+      "exportName": "LocalSync"
+    },
+    "googledrive": {
+      "name": "Google Drive Sync",
+      "description": "Google Drive cloud synchronization via OAuth",
+      "module": "../../plugins/sync/googledrive/index.js",
+      "dependencies": [
+        "googleapis",
+        "google-auth-library"
+      ],
+      "optional": true,
+      "exportName": "GoogleDriveSync"
+    }
+  }
+}
+

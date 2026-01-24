@@ -1,0 +1,106 @@
+# ============================================
+# Witral - Docker Compose Configuration
+# ============================================
+#
+# UNIVERSAL COMMAND (interactive CLI wizard):
+#
+#   docker compose run --service-ports --build witral
+#
+#   This single command works identically on:
+#   - Windows (Docker Desktop)
+#   - Linux/macOS
+#   - Oracle Cloud / EC2 (via SSH)
+#   - After cloning the repository
+#
+#   The first-run wizard will guide you through setup interactively.
+#   Dashboard available at: http://localhost:3000/web
+#
+# OTHER MODES:
+#
+#   Background mode (after initial setup):
+#     docker compose up -d
+#
+#   Development (local with hot-reload):
+#     BUILD_TARGET=development docker compose up --build
+#
+# Note: Use 'docker compose run' for interactive wizard (first run).
+#       Use 'docker compose up -d' for background operation (after setup).
+
+services:
+  witral:
+    # Image name (used when building locally with --build)
+    image: ${WITRAL_IMAGE:-witral:latest}
+    
+    # Build configuration - always builds locally with 'docker compose up --build'
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ${BUILD_TARGET:-production}
+    
+    container_name: witral
+    restart: unless-stopped
+    stdin_open: true  # Allow interactive input for wizard and CLI
+    tty: true         # Assign pseudo-TTY for interactive mode
+    
+    # Resource limits for EC2 t3.small (2GB RAM)
+    deploy:
+      resources:
+        limits:
+          memory: 1536M
+        reservations:
+          memory: 512M
+    
+    # Environment variables
+    # Note: .env file is optional - if it exists, it will be loaded by Docker Compose automatically
+    # Variables defined here have defaults and will be used if .env doesn't exist
+    # init-setup.sh creates .env from env.example inside the container for app configuration
+    environment:
+      - NODE_OPTIONS=--max-old-space-size=${NODE_MAX_OLD_SPACE:-1024}
+      - NODE_ENV=${NODE_ENV:-production}
+      - TZ=${TZ:-America/Santiago}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+      - LOG_FORMAT=${LOG_FORMAT:-json}
+    
+    # Volumes
+    volumes:
+      # Main data directory (includes all subdirectories and JSON files)
+      # This ensures groups, tags, and all data persist between container restarts
+      - ./data:/app/data
+      # Vault directory at root (contains generated markdown files)
+      # This ensures vault content persists between container restarts
+      - ./vault:/app/vault
+      
+      # Development only: mount source code for hot-reload
+      # Only used when BUILD_TARGET=development
+      - ./src:/app/src:ro
+    
+    # Ports
+    ports:
+      # Web Dashboard
+      - "${WEB_PORT:-3000}:3000"
+      
+      # Development only: expose debugger port
+      # Only used when BUILD_TARGET=development
+      - "${DEBUG_PORT:-9229}:9229"
+    
+    # Health check - verifies that the web dashboard is accessible
+    healthcheck:
+      test: ["CMD", "node", "/app/scripts/healthcheck.js"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    
+    networks:
+      - witral-network
+
+networks:
+  witral-network:
+    driver: bridge
