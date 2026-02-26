@@ -113,3 +113,11 @@ data/.wizard-completed
 backups/
 backup_*.tar.gz
 
+# --------------------------------------------
+# Website Build Artifacts
+# --------------------------------------------
+website/dist/
+website/node_modules/
+website/*.tsbuildinfo
+website/vite.config.js
+website/vite.config.d.ts

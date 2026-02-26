@@ -1,0 +1,111 @@
+{
+    "translation": {
+        "hero": {
+            "title": "Unified Data Ingestion.",
+            "subtitle": "The ultimate framework to centralize, transform, and route your information to any destination, frictionlessly.",
+            "ctaPrimary": "Get Started",
+            "ctaSecondary": "View on GitHub",
+            "terminal": {
+                "install": "Installing dependencies...",
+                "start": "Starting ingestion framework...",
+                "status": "Witral Core Active."
+            }
+        },
+        "capabilities": {
+            "title": "Limitless Capabilities",
+            "subtitle": "Discover how Witral empowers your data infrastructure.",
+            "cards": {
+                "ingestion": {
+                    "title": "Dynamic Ingestion",
+                    "description": "Orchestrate and normalize massive data volumes from multiple sources into a standardized format in real-time."
+                },
+                "plugins": {
+                    "title": "Plugin Expansion",
+                    "description": "A modular architecture that lets you build and inject custom transformers, validators, or connectors without modifying the core."
+                },
+                "cloud": {
+                    "title": "Cloud Providers",
+                    "description": "Native integration with leading providers like AWS, Google Cloud, and Azure. Route your processed data wherever you need it."
+                }
+            }
+        },
+        "footer": {
+            "text": "Built with quality in mind. Witral Ingestion Framework."
+        },
+        "workflow": {
+            "title": "The Unified Pipeline",
+            "subtitle": "From the immediacy of a message to structured, persisted knowledge.",
+            "steps": {
+                "source": {
+                    "title": "Ingestion Source",
+                    "description": "Accepts text streams or payloads from APIs or clients such as WhatsApp (via Baileys)."
+                },
+                "core": {
+                    "title": "Core Processing",
+                    "description": "The CLI engine intercepts, formats, and applies transformer plugins in bare-metal milliseconds."
+                },
+                "destination": {
+                    "title": "Final Destination",
+                    "description": "Native cloud syncing out-of-the-box, saving directly into Google Drive or repositories seamlessly."
+                }
+            }
+        },
+        "stack": {
+            "title": "Architecture & Performance",
+            "subtitle": "Built for developers demanding total control over their data.",
+            "features": {
+                "cli": {
+                    "title": "100% CLI-Driven",
+                    "description": "The entire framework is orchestrated entirely from the command line. Zero visual bloatware. Ideal for CI/CD."
+                },
+                "tech": {
+                    "title": "Node.js & TypeScript",
+                    "description": "Deep V8 optimizations and strong typing ensure fail-safe extensibility with extremely low memory footprint."
+                },
+                "host": {
+                    "title": "Self-Hosted & Private",
+                    "description": "Your data never transits third-party unauthorized servers. You own the infra, pipelines, and the encryption keys."
+                }
+            }
+        },
+        "usecases": {
+            "title": "Zero Friction. Just Knowledge.",
+            "subtitle": "Real examples of how Witral structures your daily chaos without changing your habits.",
+            "cases": {
+                "append": {
+                    "title": "Append Mode (Add to list)",
+                    "trigger": ",,buy USB-C adapter for the monitor.",
+                    "description": "Detects the tag and appends the line to a single `buy.md` list, stored in the `Vault/tags` folder of your Obsidian."
+                },
+                "newfile": {
+                    "title": "New File Mode (Complex Ideas)",
+                    "trigger": ",,project_x,,bypass-idea Find a bypass...",
+                    "description": "Generates a new file named `bypass-idea.md` with your idea, stored directly in `Vault/tags/project_x/`."
+                }
+            }
+        },
+        "quickstart": {
+            "title": "Deploy in seconds.",
+            "subtitle": "Requires Docker and a Linux/WSL2 system. The interactive wizard handles the rest.",
+            "copied": "Copied!"
+        },
+        "philosophy": {
+            "title": "The Friction Problem",
+            "subtitle": "The Purpose of Witral",
+            "points": [
+                {
+                    "title": "The Broken Habit",
+                    "text": "The potential of Second Brain systems is huge, but interrupting your workflow to open another app and structure notes creates enough friction to abandon the habit altogether."
+                },
+                {
+                    "title": "The Natural Refuge",
+                    "text": "Conversely, using messaging apps like WhatsApp or Telegram as a personal notepad is universal. Their immediacy for saving links and reminders prevails simply because they are always within reach."
+                },
+                {
+                    "title": "Zero Resistance",
+                    "text": "Witral eliminates this friction by letting you capture ideas from the chat interface you already use, while our core engine structures and routes the knowledge into your persistent vaults."
+                }
+            ]
+        }
+    }
+}
